@@ -1,0 +1,118 @@
+@import './Variables.css';
+@import './breakpoints.css';
+
+.navbar {
+  padding: 10px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  @include sm {
+    padding: 10px 20px;
+  }
+
+  img {
+    width: 100px;
+    cursor: pointer;
+  }
+}
+
+.navbar_search {
+  border:2px solid black;
+  border-radius: 30px;
+  height: 50px;
+  padding: 0px 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  input {
+    border: none;
+    outline: none;
+  }
+
+  &:hover {
+    @include shadow;
+  }
+
+  @include lg {
+    display: none;
+  }
+}
+
+.navbar_right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  a {
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: 700;
+    cursor: pointer;
+
+    .navbar_right:hover {
+      color: var(--pinkred);
+    }
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  .navbar_right_account {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border: 2px solid rgb(10, 10, 10);
+    border-radius: 30px;
+    gap: 10px;
+    background-color: white;
+    cursor: pointer;
+
+    :hover {
+      @include shadow;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  .navbar_right_accountmenu{
+    position: absolute;
+    background-color: rgb(232, 224, 224);
+    right: 60px;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 10px 0;
+    border: 1px solid var(--lightgrey);
+    border-radius: 20px;
+    @include shadow;
+    z-index: 9999;
+
+    @include sm {
+      right: 20px;
+    }
+
+    a {
+      width: 100%;
+      padding: 8px 15px;
+      text-decoration: none;
+      color: var(--blue);
+      font-weight: 700;
+
+      &:hover {
+        color: var(--pinkred);
+        background-color: rgba(217, 213, 213, 0.2);
+      }
+    }
+  }
+}
