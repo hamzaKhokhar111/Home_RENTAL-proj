@@ -8,6 +8,7 @@ function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const dispatch = useDispatch();
 
@@ -22,17 +23,22 @@ function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
 
-      const loggedIn = await response.json();
-      if (loggedIn) {
-        dispatch(
-          setLogin({
-            user: loggedIn.user,
-            token: loggedIn.token,
-          })
-        );
-        navigate('/');
+      if (!response.ok) {
+        const error = await response.json();
+        setErrorMessage(error.message);
+        return;
       }
+
+      const loggedIn = await response.json();
+      dispatch(
+        setLogin({
+          user: loggedIn.user,
+          token: loggedIn.token,
+        })
+      );
+      navigate('/');
     } catch (error) {
+      setErrorMessage('Login failed. Please try again later.');
       console.log('Login failed', error.message);
     }
   };
@@ -41,6 +47,7 @@ function LoginPage() {
     <div className='login'>
       <div className='login_content'>
         <form onSubmit={handleSubmit} className='login_content_form'>
+          {errorMessage && <p className="error_message">{errorMessage}</p>}
           <input
             type='email'
             placeholder='Email'

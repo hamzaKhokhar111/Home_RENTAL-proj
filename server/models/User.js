@@ -15,6 +15,12 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    mblnumber: {
+      type: Number,
+      // required: true,
+      // unique: true,
+    },
+
     password: {
       type: String,
       // required: true,

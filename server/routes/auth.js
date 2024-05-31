@@ -24,7 +24,7 @@ router.post("/register", upload.single("profileImage"), async (req, res) => {
     console.log('Uploaded file:', req.file);
 
     // Take all information from the form
-    const { firstname, lastname, email, password, confirmPassword } = req.body;
+    const { firstname, lastname, email,password, confirmPassword } = req.body;
 
     // The uploaded file is available as req.file
     const profileImage = req.file;

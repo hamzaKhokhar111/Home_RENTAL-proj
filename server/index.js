@@ -5,6 +5,8 @@ const listingRoutes = require('./routes/listing.js');
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
 const cors = require("cors");
+const bookingRoutes=require("./routes/booking.js")
+const userRoutes=require('./routes/user.js')
 
 // Load environment variables from .env file
 dotenv.config();
@@ -30,6 +32,9 @@ mongoose.connect(MONGO_URL, {
 
 app.use("/auth", authRoutes);
 app.use("/properties", listingRoutes);
+app.use('/bookings',bookingRoutes)
+app.use("/user",userRoutes)
+
 
 // Static folder for uploaded images
 app.use('/public/uploads', express.static('public/uploads'));
@@ -37,3 +42,4 @@ app.use('/public/uploads', express.static('public/uploads'));
 app.get('/bilo', (req, resp) => {
   resp.send("hamza ho yrrr");
 });
+//hmzii
